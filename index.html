@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rádio Cesária - Cuidar é o Nosso Remédio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #FFE0B2, #FFECB3, #FFF8E1);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .header-text {
+            text-align: center;
+            color: rgba(229, 62, 62, 0.8);
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            padding: 2rem 0;
+            text-transform: uppercase;
+        }
+
+        .main-section {
+            background: #ffffff;
+            margin: 0 2rem;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(255, 107, 107, 0.2);
+            clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 3rem;
+            background: rgba(255, 107, 107, 0.1);
+        }
+
+        .logo {
+            color: #FF6B6B;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #FF6B6B;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #FF6B6B;
+        }
+
+        .content {
+            padding: 4rem 3rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .text-content h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+        }
+
+        .text-content .radio {
+            color: #FF6B6B;
+            display: block;
+        }
+
+        .text-content .cesaria {
+            color: #E53E3E;
+            display: block;
+        }
+
+        .text-content .slogan {
+            color: #333;
+            display: block;
+            font-size: 2rem;
+            font-weight: 400;
+            margin-top: 1rem;
+        }
+
+        .description {
+            color: rgba(51, 51, 51, 0.8);
+            line-height: 1.6;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .radio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .radio-button {
+            background: linear-gradient(135deg, #FF6B6B, #FFD166);
+            border: none;
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .radio-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .radio-button:hover::before {
+            left: 100%;
+        }
+
+        .radio-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.4);
+        }
+
+        .radio-button.taboao { background: linear-gradient(135deg, #FF6B6B, #E53E3E); }
+        .radio-button.salete { background: linear-gradient(135deg, #FFD166, #FF6B6B); }
+        .radio-button.pinheiros { background: linear-gradient(135deg, #E53E3E, #FFD166); }
+        .radio-button.vista { background: linear-gradient(135deg, #FFD166, #E53E3E); }
+        .radio-button.luz { background: linear-gradient(135deg, #FF6B6B, #FFD166); }
+
+        .image-section {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .radio-icon {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #FF6B6B, #FFD166);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            color: white;
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 50px rgba(255, 107, 107, 0.3);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .social-icons {
+            position: absolute;
+            bottom: 2rem;
+            right: 3rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            background: #FF6B6B;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .loading-content {
+            text-align: center;
+            color: #333;
+        }
+
+        .loading-spinner {
+            width: 80px;
+            height: 80px;
+            border: 4px solid rgba(255, 107, 107, 0.3);
+            border-top: 4px solid #FF6B6B;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 2rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #FF6B6B;
+        }
+
+        .loading-subtitle {
+            color: rgba(51, 51, 51, 0.7);
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .main-section {
+                margin: 0 1rem;
+                clip-path: none;
+                border-radius: 15px;
+            }
+
+            .content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 2rem 1.5rem;
+            }
+
+            .text-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .text-content .slogan {
+                font-size: 1.5rem;
+            }
+
+            .nav-bar {
+                padding: 1rem 1.5rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .radio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .radio-icon {
+                width: 200px;
+                height: 200px;
+                font-size: 5rem;
+            }
+
+            .social-icons {
+                position: static;
+                justify-content: center;
+                margin-top: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-text">Rádio Cesária - Cuidar é o Nosso Remédio</div>
+        
+        <div class="main-section">
+            <nav class="nav-bar">
+                <div class="logo">❤️ Cesária</div>
+                <ul class="nav-links">
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#">Rádios</a></li>
+                    <li><a href="#">Sobre</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </nav>
+
+            <div class="content">
+                <div class="text-content">
+                    <h1>
+                        <span class="radio">RÁDIO</span>
+                        <span class="cesaria">CESÁRIA</span>
+                        <span class="slogan">Cuidar é o Nosso Remédio</span>
+                    </h1>
+                    
+                    <p class="description">
+                        Escolha sua rádio Cesária favorita e mergulhe no melhor da música com cuidado e carinho. 
+                        Cada estação tem sua própria personalidade e seleção musical única, sempre pensando no seu bem-estar. 
+                        Clique em qualquer botão abaixo para ser redirecionado para sua rádio.
+                    </p>
+
+                    <div class="radio-grid">
+                        <button class="radio-button taboao" onclick="redirectToRadio('taboao')">
+                            🏠 Taboão
+                        </button>
+                        <button class="radio-button salete" onclick="redirectToRadio('salete')">
+                            🏢 Salete
+                        </button>
+                        <button class="radio-button pinheiros" onclick="redirectToRadio('pinheiros')">
+                            🌲 Pinheiros
+                        </button>
+                        <button class="radio-button vista" onclick="redirectToRadio('vista')">
+                            🏔️ Vista
+                        </button>
+                        <button class="radio-button luz" onclick="redirectToRadio('luz')">
+                            💡 Luz
+                        </button>
+                    </div>
+                </div>
+
+                <div class="image-section">
+                    <div class="radio-icon">📻</div>
+                </div>
+            </div>
+
+            <div class="social-icons">
+                <a href="#" class="social-icon">📘</a>
+                <a href="#" class="social-icon">🐦</a>
+                <a href="#" class="social-icon">📷</a>
+                <a href="#" class="social-icon">🎵</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <div class="loading-text" id="loadingText">Conectando à Rádio...</div>
+            <div class="loading-subtitle">Aguarde alguns segundos</div>
+        </div>
+    </div>
+
+    <script>
+        function redirectToRadio(radioName) {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            const loadingText = document.getElementById('loadingText');
+            
+            // Capitalizar o nome da rádio para exibição
+            const displayName = radioName.charAt(0).toUpperCase() + radioName.slice(1);
+            loadingText.textContent = `Conectando à Rádio ${displayName}...`;
+            
+            // Mostrar overlay de loading
+            loadingOverlay.style.display = 'flex';
+            
+            // Redirecionar após 3 segundos
+            setTimeout(() => {
+                window.location.href = `https://radios.bandito.site/public/${radioName}`;
+            }, 3000);
+        }
+
+        // Adicionar efeitos de hover e animações
+        document.addEventListener('DOMContentLoaded', function() {
+            const radioButtons = document.querySelectorAll('.radio-button');
+            
+            radioButtons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px) scale(1.05)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Animação de entrada
+            const mainSection = document.querySelector('.main-section');
+            mainSection.style.opacity = '0';
+            mainSection.style.transform = 'translateY(50px)';
+            
+            setTimeout(() => {
+                mainSection.style.transition = 'all 0.8s ease';
+                mainSection.style.opacity = '1';
+                mainSection.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    </script>
+</body>
+  </html>
