@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rádio Cesária - Vista</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #FFE0B2, #FFECB3, #FFF8E1);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+        }
+
+        .redirect-container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(255, 209, 102, 0.2);
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .station-name {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FFD166;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #E53E3E;
+            margin-bottom: 2rem;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 209, 102, 0.3);
+            border-top: 4px solid #FFD166;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 2rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #FFD166;
+            margin-bottom: 1rem;
+        }
+
+        .loading-subtitle {
+            color: rgba(51, 51, 51, 0.7);
+            margin-bottom: 2rem;
+        }
+
+        .direct-link {
+            background: linear-gradient(135deg, #FFD166, #E53E3E);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .direct-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 209, 102, 0.4);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 209, 102, 0.2);
+            border-radius: 2px;
+            margin: 2rem 0 1rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #FFD166, #E53E3E);
+            border-radius: 2px;
+            animation: progress 3s linear forwards;
+        }
+
+        @keyframes progress {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="redirect-container">
+        <div class="logo">🏔️</div>
+        <h1 class="station-name">Rádio Vista</h1>
+        <p class="subtitle">Cuidar é o Nosso Remédio</p>
+        
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Conectando à Rádio Vista...</div>
+        <div class="loading-subtitle">Você será redirecionado automaticamente</div>
+        
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+        
+        <a href="https://radios.bandito.site/public/vista" class="direct-link">
+            Ir Agora
+        </a>
+    </div>
+
+    <script>
+        // Redirecionar após 3 segundos
+        setTimeout(() => {
+            window.location.href = 'https://radios.bandito.site/public/vista';
+        }, 3000);
+    </script>
+</body>
+</html>
+
